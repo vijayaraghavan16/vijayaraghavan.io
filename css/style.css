@@ -9765,3 +9765,35 @@ textarea.form-control {
   100% {
     stroke-dasharray: 89, 200;
     stroke-dashoffset: -136px; } }
+/* Prevent horizontal scrolling */
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* Make images, videos, and iframes responsive */
+img, video, iframe {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Layout and spacing fix for containers */
+.container, .content, .section, .row, .column {
+  box-sizing: border-box;
+}
+
+/* Mobile responsiveness adjustments */
+@media screen and (max-width: 768px) {
+  .container, .content, .section, .row, .column,
+  .text, .image, .left, .right {
+    width: 100% !important;
+    padding: 10px;
+    flex-direction: column;
+  }
+
+  h1, h2, h3, p {
+    text-align: center;
+  }
+}
