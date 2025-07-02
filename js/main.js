@@ -13,8 +13,7 @@
 
 
 	var fullHeight = function() {
-		height: 100vh;
-
+		
 		$('.js-fullheight').css('height', $(window).height());
 		$(window).resize(function(){
 			$('.js-fullheight').css('height', $(window).height());
