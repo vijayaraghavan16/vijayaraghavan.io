@@ -31,7 +31,9 @@
 			}
 		}, 1);
 	};
+	$(window).on('load', function () {
 	loader();
+});
 
 	// Scrollax
    $.Scrollax();
