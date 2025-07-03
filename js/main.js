@@ -319,6 +319,20 @@ $(function() {
 	$('.navbar-nav>li>a').on('click', function(){
   $('.navbar-collapse').collapse('hide');
 })
+	// ✅ Track lead in Google Analytics on contact form submit
+$('#contactForm').on('submit', function(e){
+  e.preventDefault();
+
+  alert("✅ Thanks! Your message has been sent.");
+  $(this).trigger("reset");
+
+  // 🔥 Send lead event to Google Analytics (GA4)
+  gtag('event', 'generate_lead', {
+    'event_category': 'form',
+    'event_label': 'contact_footer'
+  });
+});
+
 
 
 });
