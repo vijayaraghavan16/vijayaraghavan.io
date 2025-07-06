@@ -319,45 +319,51 @@ $(function() {
 	$('.navbar-nav>li>a').on('click', function(){
   $('.navbar-collapse').collapse('hide');
 })
-	// ✅ Track lead in Google Analytics on contact form submit
+function percentageToDegrees(percentage) {
+  return percentage / 100 * 360;
+}
+
+$('.navbar-nav>li>a').on('click', function(){
+  $('.navbar-collapse').collapse('hide');
+});
+
+// ✅ Add contact form code here
 $('#contactForm').on('submit', function(e){
   e.preventDefault();
 
-  alert("✅ Thanks! Your message has been sent.");
-  $(this).trigger("reset");
+  const form = this;
+  const formData = {
+    name: form.querySelector('[name="name"]').value,
+    email: form.querySelector('[name="email"]').value,
+    subject: form.querySelector('[name="subject"]').value,
+    message: form.querySelector('[name="message"]').value
+  };
 
-  // 🔥 Send lead event to Google Analytics (GA4)
-  gtag('event', 'generate_lead', {
-    'event_category': 'form',
-    'event_label': 'contact_footer'
+  // 🔄 Send to Google Sheets
+  fetch("https://script.google.com/macros/s/AKfycby7FuSlFL2uOSC-LbdiYDSZ0lRnPYALCuRhlvtA3T_KjI0TlXI6uJVvQOFYPIEzL2cJ/exec", {
+    method: "POST",
+    body: JSON.stringify(formData),
+    headers: {
+      "Content-Type": "application/json"
+    }
+  })
+  .then(response => {
+    alert("✅ Thanks! Your message has been sent.");
+    form.reset();
+
+    // 🔥 Optional: Google Analytics event
+    gtag('event', 'generate_lead', {
+      event_category: 'form',
+      event_label: 'contact_footer'
+    });
+  })
+  .catch(error => {
+    alert("❌ There was an error! " + error.message);
   });
 });
+	
 
-  document.getElementById("contactForm").addEventListener("submit", function (e) {
-    e.preventDefault();
 
-    const formData = {
-      name: this.name.value,
-      email: this.email.value,
-      subject: this.subject.value,
-      message: this.message.value
-    };
-
-    fetch("https://script.google.com/macros/s/AKfycby7FuSlFL2uOSC-LbdiYDSZ0lRnPYALCuRhlvtA3T_KjI0TlXI6uJVvQOFYPIEzL2cJ/exec", {
-      method: "POST",
-      body: JSON.stringify(formData),
-      headers: {
-        "Content-Type": "application/json"
-      }
-    })
-    .then(response => {
-      alert("Message sent successfully!");
-      this.reset();
-    })
-    .catch(error => {
-      alert("There was an error! " + error.message);
-    });
-  });
 
 
 
