@@ -332,7 +332,7 @@ $('#contactForm').on('submit', function(e){
     'event_label': 'contact_footer'
   });
 });
-<script>
+
   document.getElementById("contactForm").addEventListener("submit", function (e) {
     e.preventDefault();
 
@@ -358,7 +358,7 @@ $('#contactForm').on('submit', function(e){
       alert("There was an error! " + error.message);
     });
   });
-</script>
+
 
 
 
