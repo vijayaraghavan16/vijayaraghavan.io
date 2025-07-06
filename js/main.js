@@ -332,6 +332,33 @@ $('#contactForm').on('submit', function(e){
     'event_label': 'contact_footer'
   });
 });
+<script>
+  document.getElementById("contactForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const formData = {
+      name: this.name.value,
+      email: this.email.value,
+      subject: this.subject.value,
+      message: this.message.value
+    };
+
+    fetch("https://script.google.com/macros/s/AKfycby7FuSlFL2uOSC-LbdiYDSZ0lRnPYALCuRhlvtA3T_KjI0TlXI6uJVvQOFYPIEzL2cJ/exec", {
+      method: "POST",
+      body: JSON.stringify(formData),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+    .then(response => {
+      alert("Message sent successfully!");
+      this.reset();
+    })
+    .catch(error => {
+      alert("There was an error! " + error.message);
+    });
+  });
+</script>
 
 
 
