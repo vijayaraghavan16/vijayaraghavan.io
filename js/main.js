@@ -311,11 +311,7 @@ $(function() {
 
   })
 
-  function percentageToDegrees(percentage) {
 
-    return percentage / 100 * 360
-
-  }
 	$('.navbar-nav>li>a').on('click', function(){
   $('.navbar-collapse').collapse('hide');
 })
